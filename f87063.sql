@@ -28,16 +28,16 @@ prompt APPLICATION 87063 - Demo (INOAUG)
 -- Application Export:
 --   Application:     87063
 --   Name:            Demo (INOAUG)
---   Date and Time:   09:58 Wednesday August 10, 2022
+--   Date and Time:   11:27 Thursday August 11, 2022
 --   Exported By:     AKILR20@GMAIL.COM
 --   Flashback:       0
 --   Export Type:     Application Export
 --     Pages:                      4
 --       Items:                    9
 --       Processes:                6
---       Regions:                 10
+--       Regions:                  9
 --       Buttons:                  4
---       Dynamic Actions:          4
+--       Dynamic Actions:          3
 --     Shared Components:
 --       Logic:
 --         Build Options:          1
@@ -111,7 +111,7 @@ wwv_flow_imp.create_flow(
 ,p_substitution_string_01=>'APP_NAME'
 ,p_substitution_value_01=>'Demo (INOAUG)'
 ,p_last_updated_by=>'AKILR20@GMAIL.COM'
-,p_last_upd_yyyymmddhh24miss=>'20220810091637'
+,p_last_upd_yyyymmddhh24miss=>'20220811112450'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>8
 ,p_ui_type_name => null
@@ -15577,11 +15577,12 @@ wwv_flow_imp_page.create_page(
 '}',
 '',
 'apex.actions.add([saveEmployee,mapEmployee,printReport]);'))
+,p_inline_css=>'/*js-actionButton*/'
 ,p_page_template_options=>'#DEFAULT#'
 ,p_page_is_public_y_n=>'Y'
 ,p_page_component_map=>'13'
 ,p_last_updated_by=>'AKILR20@GMAIL.COM'
-,p_last_upd_yyyymmddhh24miss=>'20220810091637'
+,p_last_upd_yyyymmddhh24miss=>'20220811105022'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(71153364277989262758)
@@ -16028,7 +16029,7 @@ wwv_flow_imp_page.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'apex.navigation.redirect(''f?p=&APP_ID.:&APP_PAGE_ID.:&SESSION.:XLSX:NO:RP::'');',
+'apex.navigation.redirect(''f?p=&APP_ID.:&APP_PAGE_ID.:&SESSION.:PDF:NO:RP::'');',
 '',
 'apex.message.showPageSuccess( ''Downloaded Successfully'' );'))
 );
@@ -16052,6 +16053,9 @@ wwv_flow_imp_page.create_page(
 ,p_step_title=>'IG Customization'
 ,p_autocomplete_on_off=>'OFF'
 ,p_javascript_code=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'//This is an example of how we can custom functions to show a confirm message before deleting row(s) in an IG',
+'//if you want to use this code please call this function in the Execute when Page Loads section of the page. ',
+'',
 '// function initializeCustomSave() {',
 '//     var ig$ =  apex.region("user_details").widget(),',
 '//         grid = ig$.interactiveGrid("getViews", "grid"),',
@@ -16079,7 +16083,6 @@ wwv_flow_imp_page.create_page(
 '//         }',
 '//     }',
 '// }'))
-,p_javascript_code_onload=>'//initializeCustomSave();'
 ,p_inline_css=>wwv_flow_string.join(wwv_flow_t_varchar2(
 '.color--orange {',
 '    color: orange;',
@@ -16097,279 +16100,7 @@ wwv_flow_imp_page.create_page(
 ,p_page_is_public_y_n=>'Y'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'AKILR20@GMAIL.COM'
-,p_last_upd_yyyymmddhh24miss=>'20220809113048'
-);
-wwv_flow_imp_page.create_page_plug(
- p_id=>wwv_flow_imp.id(37584526129804630145)
-,p_plug_name=>'Interactive Grid (Inactivate Column Header)'
-,p_region_template_options=>'#DEFAULT#:js-useLocalStorage:is-collapsed:t-Region--accent15:t-Region--scrollBody'
-,p_component_template_options=>'#DEFAULT#'
-,p_plug_template=>wwv_flow_imp.id(75306775141550649730)
-,p_plug_display_sequence=>50
-,p_query_type=>'SQL'
-,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'SELECT ''Akil''   as "Employee_Name",',
-'       ''Oracle'' as "Employee Department",',
-'       ''India''  as "Country",',
-'       ''color--green''   as "COLOR_CLASS"',
-'    FROM dual',
-'UNION',
-'SELECT ''John''    as "Employee_Name",',
-'       ''JAVA''    as "Employee Department",',
-'       ''Canada''  as "Country",',
-'       ''color--red''   as "COLOR_CLASS"',
-'    FROM dual',
-'UNION',
-'SELECT ''Max''  as "Employee_Name",',
-'       ''IOT''  as "Employee Department",',
-'       ''USA''  as "country",',
-'       ''color--blue''   as "COLOR_CLASS"',
-'    FROM dual',
-'UNION    ',
-'SELECT ''Julian''  as "Employee_Name",',
-'       ''Oracle''  as "Employee Department",',
-'       ''Germany'' as "Country",',
-'       ''color--orange''   as "COLOR_CLASS"',
-'    FROM dual;'))
-,p_plug_source_type=>'NATIVE_IG'
-,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
-,p_plug_display_condition_type=>'NEVER'
-,p_prn_content_disposition=>'ATTACHMENT'
-,p_prn_units=>'INCHES'
-,p_prn_paper_size=>'LETTER'
-,p_prn_width=>11
-,p_prn_height=>8.5
-,p_prn_orientation=>'HORIZONTAL'
-,p_prn_page_header=>'Interactive Grid (Inactivate Column Header)'
-,p_prn_page_header_font_color=>'#000000'
-,p_prn_page_header_font_family=>'Helvetica'
-,p_prn_page_header_font_weight=>'normal'
-,p_prn_page_header_font_size=>'12'
-,p_prn_page_footer_font_color=>'#000000'
-,p_prn_page_footer_font_family=>'Helvetica'
-,p_prn_page_footer_font_weight=>'normal'
-,p_prn_page_footer_font_size=>'12'
-,p_prn_header_bg_color=>'#EEEEEE'
-,p_prn_header_font_color=>'#000000'
-,p_prn_header_font_family=>'Helvetica'
-,p_prn_header_font_weight=>'bold'
-,p_prn_header_font_size=>'10'
-,p_prn_body_bg_color=>'#FFFFFF'
-,p_prn_body_font_color=>'#000000'
-,p_prn_body_font_family=>'Helvetica'
-,p_prn_body_font_weight=>'normal'
-,p_prn_body_font_size=>'10'
-,p_prn_border_width=>.5
-,p_prn_page_header_alignment=>'CENTER'
-,p_prn_page_footer_alignment=>'CENTER'
-,p_prn_border_color=>'#666666'
-);
-wwv_flow_imp_page.create_region_column(
- p_id=>wwv_flow_imp.id(37584526392214630147)
-,p_name=>'Employee_Name'
-,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'Employee_Name'
-,p_data_type=>'VARCHAR2'
-,p_is_query_only=>false
-,p_item_type=>'NATIVE_TEXT_FIELD'
-,p_heading_alignment=>'LEFT'
-,p_display_sequence=>10
-,p_value_alignment=>'LEFT'
-,p_attribute_05=>'BOTH'
-,p_is_required=>false
-,p_max_length=>6
-,p_enable_filter=>true
-,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
-,p_filter_is_required=>false
-,p_filter_text_case=>'MIXED'
-,p_filter_exact_match=>true
-,p_filter_lov_type=>'DISTINCT'
-,p_use_as_row_header=>false
-,p_javascript_code=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'function(options) {',
-'    options.defaultGridColumnOptions = { ',
-'		noHeaderActivate: true,',
-'        cellTemplate: ''<div class="&COLOR_CLASS.">&"Employee_Name"!RAW.</div>''',
-'	}',
-'	return options;',
-'}'))
-,p_enable_sort_group=>true
-,p_enable_control_break=>true
-,p_enable_hide=>true
-,p_is_primary_key=>false
-,p_duplicate_value=>true
-,p_include_in_export=>false
-);
-wwv_flow_imp_page.create_region_column(
- p_id=>wwv_flow_imp.id(37584526412609630148)
-,p_name=>'Country'
-,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'Country'
-,p_data_type=>'VARCHAR2'
-,p_is_query_only=>false
-,p_item_type=>'NATIVE_TEXT_FIELD'
-,p_heading_alignment=>'LEFT'
-,p_display_sequence=>20
-,p_value_alignment=>'LEFT'
-,p_attribute_05=>'BOTH'
-,p_is_required=>false
-,p_max_length=>7
-,p_enable_filter=>true
-,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
-,p_filter_is_required=>false
-,p_filter_text_case=>'MIXED'
-,p_filter_exact_match=>true
-,p_filter_lov_type=>'DISTINCT'
-,p_use_as_row_header=>false
-,p_enable_sort_group=>true
-,p_enable_control_break=>true
-,p_enable_hide=>true
-,p_is_primary_key=>false
-,p_duplicate_value=>true
-,p_include_in_export=>true
-);
-wwv_flow_imp_page.create_region_column(
- p_id=>wwv_flow_imp.id(37584526536792630149)
-,p_name=>'Employee Department'
-,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'Employee Department'
-,p_data_type=>'VARCHAR2'
-,p_is_query_only=>false
-,p_item_type=>'NATIVE_TEXT_FIELD'
-,p_heading=>'Employee Department'
-,p_heading_alignment=>'LEFT'
-,p_display_sequence=>30
-,p_value_alignment=>'LEFT'
-,p_attribute_05=>'BOTH'
-,p_is_required=>false
-,p_max_length=>6
-,p_enable_filter=>true
-,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
-,p_filter_is_required=>false
-,p_filter_text_case=>'MIXED'
-,p_filter_exact_match=>true
-,p_filter_lov_type=>'DISTINCT'
-,p_use_as_row_header=>false
-,p_enable_sort_group=>true
-,p_enable_control_break=>true
-,p_enable_hide=>true
-,p_is_primary_key=>false
-,p_duplicate_value=>true
-,p_include_in_export=>true
-);
-wwv_flow_imp_page.create_region_column(
- p_id=>wwv_flow_imp.id(38320171334224698101)
-,p_name=>'COLOR_CLASS'
-,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'COLOR_CLASS'
-,p_data_type=>'VARCHAR2'
-,p_is_query_only=>false
-,p_item_type=>'NATIVE_TEXT_FIELD'
-,p_heading=>'Color Class'
-,p_heading_alignment=>'LEFT'
-,p_display_sequence=>40
-,p_value_alignment=>'LEFT'
-,p_attribute_05=>'BOTH'
-,p_is_required=>false
-,p_max_length=>13
-,p_enable_filter=>true
-,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
-,p_filter_is_required=>false
-,p_filter_text_case=>'MIXED'
-,p_filter_exact_match=>true
-,p_filter_lov_type=>'DISTINCT'
-,p_use_as_row_header=>false
-,p_enable_sort_group=>true
-,p_enable_control_break=>true
-,p_enable_hide=>true
-,p_is_primary_key=>false
-,p_duplicate_value=>true
-,p_include_in_export=>true
-);
-wwv_flow_imp_page.create_interactive_grid(
- p_id=>wwv_flow_imp.id(37584526222201630146)
-,p_internal_uid=>37584526222201630146
-,p_is_editable=>false
-,p_lazy_loading=>false
-,p_requires_filter=>false
-,p_select_first_row=>true
-,p_fixed_row_height=>true
-,p_pagination_type=>'SCROLL'
-,p_show_total_row_count=>true
-,p_show_toolbar=>true
-,p_enable_save_public_report=>false
-,p_enable_subscriptions=>true
-,p_enable_flashback=>true
-,p_define_chart_view=>true
-,p_enable_download=>true
-,p_download_formats=>'CSV:HTML:XLSX:PDF'
-,p_enable_mail_download=>true
-,p_fixed_header=>'PAGE'
-,p_show_icon_view=>false
-,p_show_detail_view=>false
-,p_javascript_code=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'function( config ) {',
-'    var colOptions = config.columns;',
-'    ',
-'    for (let i = 0; i < colOptions.length; i++) {',
-'        let isHidden = colOptions[i].isHidden,',
-'            igColHeading = colOptions[i].name;',
-'',
-'        if(!isHidden)  {',
-'            colOptions[i].heading.heading = igColHeading;',
-'        }',
-'    }',
-'    return config;',
-'}'))
-);
-wwv_flow_imp_page.create_ig_report(
- p_id=>wwv_flow_imp.id(38297921205742907237)
-,p_interactive_grid_id=>wwv_flow_imp.id(37584526222201630146)
-,p_static_id=>'382979213'
-,p_type=>'PRIMARY'
-,p_default_view=>'GRID'
-,p_show_row_number=>false
-,p_settings_area_expanded=>true
-);
-wwv_flow_imp_page.create_ig_report_view(
- p_id=>wwv_flow_imp.id(38297921426601907237)
-,p_report_id=>wwv_flow_imp.id(38297921205742907237)
-,p_view_type=>'GRID'
-,p_srv_exclude_null_values=>false
-,p_srv_only_display_columns=>true
-,p_edit_mode=>false
-);
-wwv_flow_imp_page.create_ig_report_column(
- p_id=>wwv_flow_imp.id(38297921920665907239)
-,p_view_id=>wwv_flow_imp.id(38297921426601907237)
-,p_display_seq=>1
-,p_column_id=>wwv_flow_imp.id(37584526392214630147)
-,p_is_visible=>true
-,p_is_frozen=>false
-);
-wwv_flow_imp_page.create_ig_report_column(
- p_id=>wwv_flow_imp.id(38297922981521907241)
-,p_view_id=>wwv_flow_imp.id(38297921426601907237)
-,p_display_seq=>2
-,p_column_id=>wwv_flow_imp.id(37584526412609630148)
-,p_is_visible=>true
-,p_is_frozen=>false
-);
-wwv_flow_imp_page.create_ig_report_column(
- p_id=>wwv_flow_imp.id(38297923809855907243)
-,p_view_id=>wwv_flow_imp.id(38297921426601907237)
-,p_display_seq=>3
-,p_column_id=>wwv_flow_imp.id(37584526536792630149)
-,p_is_visible=>true
-,p_is_frozen=>false
-);
-wwv_flow_imp_page.create_ig_report_column(
- p_id=>wwv_flow_imp.id(38319739991747477085)
-,p_view_id=>wwv_flow_imp.id(38297921426601907237)
-,p_display_seq=>5
-,p_column_id=>wwv_flow_imp.id(38320171334224698101)
-,p_is_visible=>true
-,p_is_frozen=>false
+,p_last_upd_yyyymmddhh24miss=>'20220811112450'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(71153364870662262764)
@@ -16820,6 +16551,7 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_javascript_code=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'function(config) {',
 '    console.log(config);',
+'    config.pagination.showTotalRowCount = false;',
 '    return config;',
 '}'))
 );
@@ -16876,22 +16608,22 @@ wwv_flow_imp_page.create_page_plug(
 ,p_query_type=>'SQL'
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'SELECT ''Akil''   as "Employee_Name",',
-'       ''Oracle'' as "Employee Department",',
+'       ''Oracle'' as "Employee_Department",',
 '       ''India''  as "Country"',
 '    FROM dual',
 'UNION',
 'SELECT ''John''    as "Employee_Name",',
-'       ''JAVA''    as "Employee Department",',
+'       ''JAVA''    as "Employee_Department",',
 '       ''Canada''  as "Country"',
 '    FROM dual',
 'UNION',
 'SELECT ''Max''  as "Employee_Name",',
-'       ''IOT''  as "Employee Department",',
+'       ''IOT''  as "Employee_Department",',
 '       ''USA''  as "country"',
 '    FROM dual',
 'UNION    ',
 'SELECT ''Julian''  as "Employee_Name",',
-'       ''Oracle''  as "Employee Department",',
+'       ''Oracle''  as "Employee_Department",',
 '       ''Germany'' as "Country"',
 '    FROM dual;'))
 ,p_plug_source_type=>'NATIVE_IG'
@@ -16927,16 +16659,16 @@ wwv_flow_imp_page.create_page_plug(
 ,p_prn_border_color=>'#666666'
 );
 wwv_flow_imp_page.create_region_column(
- p_id=>wwv_flow_imp.id(71153366207985262777)
-,p_name=>'Employee Department'
+ p_id=>wwv_flow_imp.id(38320171526525698103)
+,p_name=>'Employee_Name'
 ,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'Employee Department'
+,p_source_expression=>'Employee_Name'
 ,p_data_type=>'VARCHAR2'
 ,p_is_query_only=>false
 ,p_item_type=>'NATIVE_TEXT_FIELD'
-,p_heading=>'Employee Department'
+,p_heading=>'Employee Name'
 ,p_heading_alignment=>'LEFT'
-,p_display_sequence=>60
+,p_display_sequence=>70
 ,p_value_alignment=>'LEFT'
 ,p_attribute_05=>'BOTH'
 ,p_is_required=>false
@@ -16956,15 +16688,16 @@ wwv_flow_imp_page.create_region_column(
 ,p_include_in_export=>true
 );
 wwv_flow_imp_page.create_region_column(
- p_id=>wwv_flow_imp.id(94961458190569546556)
-,p_name=>'Employee_Name'
+ p_id=>wwv_flow_imp.id(38320172093167698108)
+,p_name=>'Employee_Department'
 ,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'Employee_Name'
+,p_source_expression=>'Employee_Department'
 ,p_data_type=>'VARCHAR2'
 ,p_is_query_only=>false
 ,p_item_type=>'NATIVE_TEXT_FIELD'
+,p_heading=>'Employee Department'
 ,p_heading_alignment=>'LEFT'
-,p_display_sequence=>30
+,p_display_sequence=>80
 ,p_value_alignment=>'LEFT'
 ,p_attribute_05=>'BOTH'
 ,p_is_required=>false
@@ -16981,7 +16714,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_enable_hide=>true
 ,p_is_primary_key=>false
 ,p_duplicate_value=>true
-,p_include_in_export=>false
+,p_include_in_export=>true
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(94961458421702546558)
@@ -17034,6 +16767,7 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_show_detail_view=>false
 ,p_javascript_code=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'function( config ) {',
+'    console.log(config);',
 '    var colOptions = config.columns;',
 '    ',
 '    for (let i = 0; i < colOptions.length; i++) {',
@@ -17065,24 +16799,21 @@ wwv_flow_imp_page.create_ig_report_view(
 ,p_edit_mode=>false
 );
 wwv_flow_imp_page.create_ig_report_column(
- p_id=>wwv_flow_imp.id(75371358606547294537)
+ p_id=>wwv_flow_imp.id(38830060414228360633)
 ,p_view_id=>wwv_flow_imp.id(95468837911389066761)
-,p_display_seq=>10
-,p_column_id=>wwv_flow_imp.id(71153366207985262777)
+,p_display_seq=>11
+,p_column_id=>wwv_flow_imp.id(38320171526525698103)
 ,p_is_visible=>true
 ,p_is_frozen=>false
 );
 wwv_flow_imp_page.create_ig_report_column(
- p_id=>wwv_flow_imp.id(95468838378406066762)
+ p_id=>wwv_flow_imp.id(38897461904296823246)
 ,p_view_id=>wwv_flow_imp.id(95468837911389066761)
-,p_display_seq=>1
-,p_column_id=>wwv_flow_imp.id(94961458190569546556)
+,p_display_seq=>12
+,p_column_id=>wwv_flow_imp.id(38320172093167698108)
 ,p_is_visible=>true
 ,p_is_frozen=>false
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(95468840204125066772)
 ,p_view_id=>wwv_flow_imp.id(95468837911389066761)
@@ -17102,24 +16833,6 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
-);
-wwv_flow_imp_page.create_page_da_event(
- p_id=>wwv_flow_imp.id(71153364610531262761)
-,p_name=>'Refresh IG'
-,p_event_sequence=>10
-,p_triggering_element_type=>'ITEM'
-,p_triggering_element=>'P3_SELECT_TECHNOLOGY'
-,p_bind_type=>'bind'
-,p_bind_event_type=>'change'
-);
-wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(71153364736660262762)
-,p_event_id=>wwv_flow_imp.id(71153364610531262761)
-,p_event_result=>'TRUE'
-,p_action_sequence=>10
-,p_execute_on_page_init=>'N'
-,p_action=>'NATIVE_SUBMIT_PAGE'
-,p_attribute_02=>'N'
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(75620473404465437649)
